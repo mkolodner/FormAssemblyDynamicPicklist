@@ -7,3 +7,5 @@ To use:
 3. Make the dropdown a variable called AccountName.
 4. Make a calculated field (can be hidden) whose value is AccountName.
 5. In your submit connector, you can use the calculated field's value to look up an account (by name).
+
+If you'd like to see an example, this form is connected to a sandbox: https://www.tfaforms.com/4949317
