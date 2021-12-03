@@ -2,7 +2,6 @@
 <noscript>For full functionality of this page it is necessary to &amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;a href="http://www.enable-javascript.com/"enable&amp;amp;amp;amp;amp;amp;amp;amp;amp;gt; JavaScript.&amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/a&amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;</noscript>
 </div>
 
-
 <script>
 /*
 Date Modified: 11/29/2021
@@ -13,8 +12,13 @@ to get the values using a repeatable section.
 
 TARGETFIELD in this script should be replaced with the fieldname (in format tfa_XXXX) 
 of the dropdown field you want to replace values in
+
 REPLACEVALUESFIELD in this script should be replaced with the fieldname (in format tfa_XXXX)
 of the field within your repeating section that has the values you want to show up as dynamic picklist options
+
+And on line 45 you should probably replace the current message indicating that the field has been taken over 
+with just a blank between the quotes. Then you can make the field required and the default value will not count as
+something having been selected.
 
 The example below, on Windows Load and Select change,
 1. clears the dropdown list
