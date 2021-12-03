@@ -1,3 +1,8 @@
+<div style="color:red">
+<noscript>For full functionality of this page it is necessary to &amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;a href="http://www.enable-javascript.com/"enable&amp;amp;amp;amp;amp;amp;amp;amp;amp;gt; JavaScript.&amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/a&amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;</noscript>
+</div>
+
+
 <script>
 /*
 Date Modified: 11/29/2021
@@ -100,37 +105,6 @@ $(window).load(function() {
 
 	
 	var CountIndex = $("#REPLACEVALUESFIELD")[0].selectedIndex;
-	
-	/*
-		IF/ELSE loop is created to:
-		1. check that you have selected an event
-		2. based on Index value ==2 or higher because we have the static message in the dropdown,
-		3. I need to use Javascript of jQuery. Not sure why this is but it works
-	*/
-	//if nothing is selected pop up message	 
-	 if (CountIndex == 0) {
-		alert("must select event ");
-	}//end first if-statement
-
-	else if (indexLength == 2){
-
-	// ##########
-	// #SELECTED REPEATABLE RECORDS FOR SELECTEDINDEX (jQuery FORMAT)
-	// ##########	
-
-	var eventDisplay4ToFind = $("#TARGETFIELD")[index].value;  //EventDisplay4 Repeater
-	}//end of second if
-	else if (indexLength >2){
-	//--------------------------	
-
-	// ##########
-	// #SELECTED REPEATABLE RECORDS FOR SELECTEDINDEX (Javascript FORMAT)
-	// ##########
-	//console.log(EventSelectedIndex);  
-
-	var eventDisplay4ToFind = document.getElementById('TARGETFIELD[' + index + ']').value;  //EventDisplay4 Repeater
-	}//end of third if
-		
 		
    
 	  });//Close tfa_XX-Change-function
