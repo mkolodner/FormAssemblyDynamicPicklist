@@ -29,8 +29,6 @@ The example below, on Windows Load and Select change,
  </script>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-
-<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.js"></script>
 <script>
 // ##########
 // #FORM LOAD
