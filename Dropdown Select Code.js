@@ -43,8 +43,6 @@ to pass a different value from the repeater than the label displayed in the drop
 	let theLabel = 'tfa_11';//SET THE ID FOR THE FIELD IN THE REPEATER CONTAINING THE LABEL TO DISPLAY IN THE DROPDOWN (I.E. ACCOUNT NAME)
 	//repeater value
 	let theValue = 'tfa_12';//SET THE ID FOR THE FIELD IN THE REPEATER CONTAINING THE VALUE TO PASS IN TO SALESFORCE (I.E. ACCOUNT ID)
-	//field to hold the chosen value
-	let theChoice = 'tfa_8';//SET THE ID FOR THE FIELD TO HOLD THE CHOSEN VALUE AND TO PASS INTO SALESFORCE
 
 
 	// ##########
@@ -58,7 +56,8 @@ to pass a different value from the repeater than the label displayed in the drop
 		document.getElementById(theDropDown).options.length=0;
 		// Add the select option message (Can be anything you want wrapped in double quotes)
 		var option = document.createElement("option");
-		option.text = "This element has been taken over!!!!! ...";
+		option.text = "Please Select...";
+		option.value = "";//set top value to null so setting required can work
 		document.getElementById(theDropDown).add(option);//Dropdown field
 	 
 	  
@@ -71,19 +70,24 @@ to pass a different value from the repeater than the label displayed in the drop
 		// Text Repeater field
 		var eventDisplay4Arr = [];// Array for storing all the dropdown names 
 		var eventDisplay4Arr = document.querySelectorAll(`[id^=${theLabel}]`); // Example: all the account names from repeating section
+		
+		var eventStore4Arr = [];// Array for storing all the dropdown values 
+		var eventStore4Arr = document.querySelectorAll(`[id^=${theValue}]`); // Example: all the account Ids from repeating section
 					  
 		var textToWrite; // temp variable for writing to arrays
+		var valueToStore; //temp variable for storing value
 
 		//For all contents of the eventDisplay4 array (from repeater - theLabel) ..
 		for(var i in eventDisplay4Arr){
 					
 			//assign current iterations value to var.
 			textToWrite = eventDisplay4Arr[i].value;
+			valueToStore = eventStore4Arr[i].value;
 					
 			//if it contains a value ...
 			if (textToWrite) {
 				//add the eventDisplay4 value to the selection 'main' dropdown
-				addToDropdown(textToWrite); //This adds the text to the dropdown box ...
+				addToDropdown(textToWrite,valueToStore); //This adds the text to the dropdown box and sets the value...
 																			
 				if (textToWrite == "" || textToWrite == null) {
 					alert("EventDisplay4 TextToWrite BLANK - please contact administrator.");
@@ -99,10 +103,11 @@ to pass a different value from the repeater than the label displayed in the drop
 	  //----------------------------------
 	  
 		// Function to add to the dropdown
-		function addToDropdown(text) {
+		function addToDropdown(text,storedValue) {
 			var x = document.getElementById(theDropDown);//Dropdown field you are replacing values in
 			var option = document.createElement("option");
 			option.text = text;
+			option.value = storedValue;
 			x.add(option);
 		}
 	  
@@ -129,25 +134,6 @@ to pass a different value from the repeater than the label displayed in the drop
 			return;
 		});//Close Document-ready-function  
 
-		//add event listener to dropdown to get chosen value from label
-		document.getElementById(theDropDown).addEventListener('change',setChoice);  
-
 	});//Close- Load windows Function
-
-	//function to grab corresponding value from chosen label and set in choice field
-	function setChoice(){
-		let theDropDownLabel = document.getElementById(theDropDown).value;//the current selection in the dropdown
-		let theChoiceField = document.getElementById(theChoice);//the field to pass the value from the repeater and send to Salesforce
-		
-		let labelArray = document.querySelectorAll(`[id^=${theLabel}]`); //all of the labels from the repeater
-		let valueArray = document.querySelectorAll(`[id^=${theValue}]`); //all of the values from the repeater
-		
-		//cycle through each label in repeater
-		for(let i in theDropDownLabel){
-			if((labelArray[i]) && labelArray[i].value == theDropDownLabel){//if the current label matches the choice in the dropdown
-				theChoiceField.value = valueArray[i].value;//send the corresponding value from the repeater to the choice field			
-			}
-		}
-	}
 
 </script>
