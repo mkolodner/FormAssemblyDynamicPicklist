@@ -30,7 +30,6 @@ Date Modified: 12/22/2021
 Modified Notes: Modified by Ben Swift to use template literals instead of setting field ids multiple times. Added functionality
 to pass a different value from the repeater than the label displayed in the dropdown
 
-Set field Ids
 */
  </script>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
