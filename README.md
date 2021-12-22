@@ -8,4 +8,4 @@ To use:
 4. Make a calculated field (can be hidden) whose value is the AccountName variable.
 5. In your submit connector, you can use the calculated id to send to Salesforce.
 
-If you'd like to see an example, this form is connected to a sandbox: https://www.tfaforms.com/4949317
+If you'd like to see an example, this form is connected to a sandbox: https://www.tfaforms.com/4954288 (valid to 1/4/22)
