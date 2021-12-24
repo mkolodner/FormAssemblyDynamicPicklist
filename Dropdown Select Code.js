@@ -10,15 +10,10 @@ Author: Michael Kolodner, based on work by Robert Wynter
 The purpose of this script is to Prefill a dropdown on your form using the Salesforce Prefill Connector 
 to get the values using a repeatable section.
 
-TARGETFIELD in this script should be replaced with the fieldname (in format tfa_XXXX) 
-of the dropdown field you want to replace values in
+Set the values in lines 40, 42, and 43 for the fields you are working with in your form (in format tfa_XXXX)
 
-REPLACEVALUESFIELD in this script should be replaced with the fieldname (in format tfa_XXXX)
-of the field within your repeating section that has the values you want to show up as dynamic picklist options
-
-And on line 45 you should probably replace the current message indicating that the field has been taken over 
-with just a blank between the quotes. Then you can make the field required and the default value will not count as
-something having been selected.
+On line 59 is the message used when the field has been taken over. It's set to "Please select..." 
+so it looks like other FormAssembly picklists.
 
 The example below, on Windows Load and Select change,
 1. clears the dropdown list
