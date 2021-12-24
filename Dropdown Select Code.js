@@ -10,10 +10,11 @@ Author: Michael Kolodner, based on work by Robert Wynter
 The purpose of this script is to Prefill a dropdown on your form using the Salesforce Prefill Connector 
 to get the values using a repeatable section.
 
-Set the values in lines 40, 42, and 43 for the fields you are working with in your form (in format tfa_XXXX)
+Set the values in lines 37, 39, and 41 for the fields you are working with in your form (in format tfa_XXXX)
 
-On line 59 is the message used when the field has been taken over. It's set to "Please select..." 
-so it looks like other FormAssembly picklists.
+On line 55 is the message used when the field has been taken over. 
+In this example it's set to "This field has been taken over!" so make it clear what is happening. 
+You probably want to use "Please select..." so it looks like other FormAssembly picklists.
 
 The example below, on Windows Load and Select change,
 1. clears the dropdown list
@@ -35,9 +36,9 @@ to pass a different value from the repeater than the label displayed in the drop
 	//dropdown field
 	let theDropDown = 'tfa_4';//SET THE ID FOR THE DROPDOWN FIELD
 	//repeater label
-	let theLabel = 'tfa_11';//SET THE ID FOR THE FIELD IN THE REPEATER CONTAINING THE LABEL TO DISPLAY IN THE DROPDOWN (I.E. ACCOUNT NAME)
+	let theLabel = 'tfa_3';//SET THE ID FOR THE FIELD IN THE REPEATER CONTAINING THE LABEL TO DISPLAY IN THE DROPDOWN (I.E. ACCOUNT NAME)
 	//repeater value
-	let theValue = 'tfa_12';//SET THE ID FOR THE FIELD IN THE REPEATER CONTAINING THE VALUE TO PASS IN TO SALESFORCE (I.E. ACCOUNT ID)
+	let theValue = 'tfa_7';//SET THE ID FOR THE FIELD IN THE REPEATER CONTAINING THE VALUE TO PASS IN TO SALESFORCE (I.E. ACCOUNT ID)
 
 
 	// ##########
@@ -51,7 +52,7 @@ to pass a different value from the repeater than the label displayed in the drop
 		document.getElementById(theDropDown).options.length=0;
 		// Add the select option message (Can be anything you want wrapped in double quotes)
 		var option = document.createElement("option");
-		option.text = "Please Select...";
+		option.text = "This field has been taken over!";
 		option.value = "";//set top value to null so setting required can work
 		document.getElementById(theDropDown).add(option);//Dropdown field
 	 
