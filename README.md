@@ -5,7 +5,7 @@ To use:
 1. Create a form with a dropdown and a repeating section that gets filled upon form load. For example, a repeating section that looks up all Accounts of a certain record type and then puts their Account Name in a field (the label for the drop down) and their Account Id in a field (the value to send to Salesforce).
 2. Put the code from Dropdown Select Code.js into the custom code area of your form and edit it to use the right form field names (the dropdown, Account Name and Account Id)
 3. Make the dropdown a variable called AccountName.
-4. Make a calculated field (can be hidden) whose value is the AccountName variable.
+4. Make a calculated field (can be hidden) whose value is the Id of the selected Account.
 5. In your submit connector, you can use the calculated id to send to Salesforce.
 
-If you'd like to see an example, this form is connected to a sandbox: https://www.tfaforms.com/4954288 (valid to 1/4/22)
+If you'd like to see an example, this form is connected to a sandbox: https://www.tfaforms.com/4949317
