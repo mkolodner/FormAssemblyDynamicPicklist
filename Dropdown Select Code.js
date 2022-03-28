@@ -65,10 +65,10 @@ to pass a different value from the repeater than the label displayed in the drop
 				
 		// Text Repeater field
 		var eventDisplay4Arr = [];// Array for storing all the dropdown names 
-		var eventDisplay4Arr = document.querySelectorAll(`[id^=${theLabel}\\[]`); // Example: all the account names from repeating section
+		var eventDisplay4Arr = document.querySelectorAll(`input[id^=${theLabel}\\[]`); // Example: all the account names from repeating section
 		
 		var eventStore4Arr = [];// Array for storing all the dropdown values 
-		var eventStore4Arr = document.querySelectorAll(`[id^=${theValue}]\\[]`); // Example: all the account Ids from repeating section
+		var eventStore4Arr = document.querySelectorAll(`input[id^=${theValue}\\[]`); // Example: all the account Ids from repeating section
 					  
 		var textToWrite; // temp variable for writing to arrays
 		var valueToStore; //temp variable for storing value
