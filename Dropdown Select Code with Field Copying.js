@@ -30,16 +30,38 @@ to pass a different value from the repeater than the label displayed in the drop
  </script>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-<script>
+<script> 
 
 	//####SET FIELD IDS HERE####
 	//dropdown field
-	let theDropDown = 'tfa_4';//SET THE ID FOR THE DROPDOWN FIELD
+	let theDropDown = 'tfa_5';//SET THE ID FOR THE DROPDOWN FIELD
 	//repeater label
-	let theLabel = 'tfa_3';//SET THE ID FOR THE FIELD IN THE REPEATER CONTAINING THE LABEL TO DISPLAY IN THE DROPDOWN (I.E. ACCOUNT NAME)
+	let theLabel = 'tfa_2';//SET THE ID FOR THE FIELD IN THE REPEATER CONTAINING THE LABEL TO DISPLAY IN THE DROPDOWN (I.E. ACCOUNT NAME)
 	//repeater value
-	let theValue = 'tfa_7';//SET THE ID FOR THE FIELD IN THE REPEATER CONTAINING THE VALUE TO PASS IN TO SALESFORCE (I.E. ACCOUNT ID)
-
+	let theValue = 'tfa_3';//SET THE ID FOR THE FIELD IN THE REPEATER CONTAINING THE VALUE TO PASS IN TO SALESFORCE (I.E. ACCOUNT ID)
+	
+	//IF YOU WANT TO MAP ADDITIONAL FIELDS FROM THE REPEATING SECTION TO DISPLAY, SET TO true. OTHERWISE LEAVE AS false
+	let copyFields = true;	
+	//MAP VALUES FROM THE REPEATER TO THE FORM TO UPDATE WITH INFORMATION FROM THE SELECTED RECORD WHEN THE DROPDOWN IS CHANGED
+	let valsToCopy = [
+		{
+			src: 'tfa_29',//source field from repeating section
+			trgt: 'tfa_35'//target field in form to copy data to
+		},//don't forget to add a comma between closing and opening curly braces if adding more
+		{
+			src: 'tfa_31',
+			trgt: 'tfa_38'
+		},
+		{
+			src: 'tfa_32',
+			trgt: 'tfa_40'
+		},
+		{
+			src: 'tfa_33',
+			trgt: 'tfa_42'
+		}//no comma after last closing curly brace
+	];
+	
 
 	// ##########
 	// #FORM LOAD
@@ -65,20 +87,19 @@ to pass a different value from the repeater than the label displayed in the drop
 				
 		// Text Repeater field
 		var eventDisplay4Arr = [];// Array for storing all the dropdown names 
-		var eventDisplay4Arr = document.querySelectorAll(`[id^=${theLabel}\\[]`); // Example: all the account names from repeating section
+		var eventDisplay4Arr = document.querySelectorAll(`input[id^=${theLabel}\\[]`); // Example: all the account names from repeating section
 		
 		var eventStore4Arr = [];// Array for storing all the dropdown values 
-		var eventStore4Arr = document.querySelectorAll(`[id^=${theValue}]\\[]`); // Example: all the account Ids from repeating section
+		var eventStore4Arr = document.querySelectorAll(`input[id^=${theValue}\\[]`); // Example: all the account Ids from repeating section
 					  
 		var textToWrite; // temp variable for writing to arrays
 		var valueToStore; //temp variable for storing value
 
 		//For all contents of the eventDisplay4 array (from repeater - theLabel) ..
 		for(var i in eventDisplay4Arr){
-					
 			//assign current iterations value to var.
 			textToWrite = eventDisplay4Arr[i].value;
-			valueToStore = eventStore4Arr[i].value;
+			valueToStore = (eventStore4Arr[i])? eventStore4Arr[i].value : null;
 					
 			//if it contains a value ...
 			if (textToWrite) {
@@ -129,7 +150,45 @@ to pass a different value from the repeater than the label displayed in the drop
 			
 			return;
 		});//Close Document-ready-function  
-
+		
+		//add listener for dropdown change to copy field values
+		dropdownAccount.onchange = copyFieldsOnSelect;
+		
 	});//Close- Load windows Function
-
+	
+	//function to handle copying fields from repeating section to form on dropdown select
+	function copyFieldsOnSelect(event){
+		//get the selected id
+		var selectedOpt = event.target.value;
+		
+		//get the array of values from repeating section
+		var eventStore4Arr = [];// Array for storing all the dropdown values 
+		var eventStore4Arr = document.querySelectorAll(`input[id^=${theValue}\\[]`); // Example: all the account Ids from repeating section
+		
+		//get the index of the repeating value that matched the selected dropdown
+		var theIndex;
+		for(var i in eventStore4Arr){
+			if(eventStore4Arr[i].value == selectedOpt){
+				theIndex = i;
+				break;
+			}
+		}
+		
+		//for each set in the valsToCopy array, copy the value from the indexed repeating section field to the target input id
+		if(copyFields && (valsToCopy)){
+			for(var valToCopy of valsToCopy){
+				if((valToCopy.trgt) && (document.getElementById(valToCopy.trgt))){
+					document.getElementById(valToCopy.trgt).value = null;
+				}
+				
+				if((valToCopy.src) && (valToCopy.trgt)){
+					var src = document.getElementById(valToCopy.trgt);
+					var trgt = document.getElementById(`${valToCopy.src}[${theIndex}]`);
+					if((src) && (trgt)){
+						src.value = trgt.value;
+					}
+				}
+			}
+		}
+	}
 </script>
