@@ -9,3 +9,5 @@ To use:
 5. In your submit connector, you can use the calculated id to send to Salesforce.
 
 If you'd like to see an example, this form is connected to a sandbox: https://www.tfaforms.com/4949317
+
+The other file in this repo, Dropdown Select Code with Field Copying.js, does the same basic thing as Dropdown Select Code.js but it also allows for displaying fields from the selected option in fields on your form. This way when someone chooses a record they can see not just the name of what they have chosen but other fields as well, such as Start Date and End Date for a program. The code is commented so it should be pretty easy to use. But if this is intimidating, just use the basic Dropdown Select Code.js and don't worry about it.
